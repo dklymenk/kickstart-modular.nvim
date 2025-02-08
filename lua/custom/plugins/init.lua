@@ -2,4 +2,24 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      toggler = {
+        line = '<leader>/',
+      },
+      opleader = {
+        line = '<leader>/',
+      },
+    },
+  },
+  {
+    'kevinhwang91/rnvimr',
+    init = function()
+      vim.keymap.set('n', '<leader>r', '<cmd>RnvimrToggle<CR>')
+      vim.g.rnvimr_enable_picker = 1
+      vim.g.rnvimr_enable_bw = 1
+    end,
+  },
+}
