@@ -1,3 +1,5 @@
+local bad_formatters = { 'ts_ls', 'lua_ls' }
+
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -11,7 +13,7 @@ return {
             async = true,
             lsp_format = 'last',
             filter = function(client)
-              return client.name ~= 'ts_ls'
+              return not vim.tbl_contains(bad_formatters, client.name)
             end,
           }
         end,
@@ -36,7 +38,7 @@ return {
           timeout_ms = 2500,
           lsp_format = lsp_format_opt,
           filter = function(client)
-            return client.name ~= 'ts_ls'
+            return not vim.tbl_contains(bad_formatters, client.name)
           end,
         }
       end,
