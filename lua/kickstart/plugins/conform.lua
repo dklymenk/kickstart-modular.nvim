@@ -7,7 +7,13 @@ return {
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
+          require('conform').format {
+            async = true,
+            lsp_format = 'last',
+            filter = function(client)
+              return client.name ~= 'ts_ls'
+            end,
+          }
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -24,11 +30,14 @@ return {
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
         else
-          lsp_format_opt = 'fallback'
+          lsp_format_opt = 'last'
         end
         return {
-          timeout_ms = 500,
+          timeout_ms = 2500,
           lsp_format = lsp_format_opt,
+          filter = function(client)
+            return client.name ~= 'ts_ls'
+          end,
         }
       end,
       formatters_by_ft = {
@@ -38,6 +47,7 @@ return {
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { 'prettierd' },
       },
     },
   },
