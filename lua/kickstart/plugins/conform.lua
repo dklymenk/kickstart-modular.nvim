@@ -20,6 +20,20 @@ return {
         mode = '',
         desc = '[F]ormat buffer',
       },
+      {
+        '<leader>lf',
+        function()
+          require('conform').format {
+            async = true,
+            lsp_format = 'last',
+            filter = function(client)
+              return not vim.tbl_contains(bad_formatters, client.name)
+            end,
+          }
+        end,
+        mode = '',
+        desc = '[F]ormat',
+      },
     },
     opts = {
       notify_on_error = false,
