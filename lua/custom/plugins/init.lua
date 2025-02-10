@@ -15,11 +15,15 @@ return {
     },
   },
   {
-    'kevinhwang91/rnvimr',
-    init = function()
-      vim.keymap.set('n', '<leader>r', '<cmd>RnvimrToggle<CR>')
-      vim.g.rnvimr_enable_picker = 1
-      vim.g.rnvimr_enable_bw = 1
+    'kelly-lin/ranger.nvim',
+    config = function()
+      require('ranger-nvim').setup { replace_netrw = true, ui = { height = 0.95 } }
+      vim.api.nvim_set_keymap('n', '<leader>r', '', {
+        noremap = true,
+        callback = function()
+          require('ranger-nvim').open(true)
+        end,
+      })
     end,
   },
 }
