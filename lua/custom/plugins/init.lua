@@ -26,4 +26,5 @@ return {
       })
     end,
   },
+  { 'ruanyl/vim-gh-line' },
 }
