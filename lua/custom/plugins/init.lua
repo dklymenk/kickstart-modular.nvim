@@ -27,4 +27,5 @@ return {
     end,
   },
   { 'ruanyl/vim-gh-line' },
+  { 'chaoren/vim-wordmotion' },
 }
