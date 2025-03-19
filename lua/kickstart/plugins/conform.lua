@@ -1,4 +1,4 @@
-local bad_formatters = { 'ts_ls', 'lua_ls' }
+local bad_formatters = { 'ts_ls', 'lua_ls', 'jsonls' }
 
 return {
   { -- Autoformat
@@ -63,8 +63,11 @@ return {
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         markdown = { 'prettierd' },
+        json = { 'prettierd' },
+        jsonc = { 'prettierd' },
       },
     },
   },
