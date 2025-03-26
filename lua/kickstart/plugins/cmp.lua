@@ -53,7 +53,15 @@ return {
         -- chosen, you will need to read `:help ins-completion`
         --
         -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        mapping = cmp.mapping.preset.insert {
+        -- mapping = cmp.mapping.preset.insert {
+        mapping = {
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<Down>'] = {
+            i = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+          },
+          ['<Up>'] = {
+            i = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+          },
           -- Select the [n]ext item
           -- ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
