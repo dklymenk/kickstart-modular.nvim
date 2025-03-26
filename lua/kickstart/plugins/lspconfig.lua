@@ -207,16 +207,10 @@ return {
             },
           },
         },
+        graphql = {
+          filetypes = { 'graphql', 'typescriptreact', 'javascriptreact', 'javascript', 'typescript' },
+        },
       }
-      local graphqlcmd = '/Users/dmytro.klymenkosyniti.com/.nvm/versions/node/v20.14.0/bin/graphql-lsp'
-      if vim.fn.executable(graphqlcmd) == 1 then
-        servers = vim.tbl_extend('error', servers, {
-          graphql = {
-            filetypes = { 'graphql', 'typescriptreact', 'javascriptreact', 'javascript', 'typescript' },
-            cmd = { graphqlcmd, 'server', '-m', 'stream' },
-          },
-        })
-      end
 
       -- Ensure the servers and tools above are installed
       --
