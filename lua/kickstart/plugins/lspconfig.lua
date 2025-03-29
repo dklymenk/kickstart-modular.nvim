@@ -212,6 +212,30 @@ return {
         },
       }
 
+      local is_skp_component_libs = function()
+        local cwd = vim.fn.getcwd()
+        return cwd:find 'skp%-component%-libs' ~= nil
+      end
+      if is_skp_component_libs() then
+        servers.tailwindcss = {
+          root_dir = function(fname)
+            local util = require 'lspconfig.util'
+            local root_file = {
+              '.git',
+            }
+            return util.root_pattern(unpack(root_file))(fname)
+          end,
+          settings = {
+            tailwindCSS = {
+              validate = true,
+              experimental = {
+                configFile = 'packages/utils/tailwind/tailwind.config.ts',
+              },
+            },
+          },
+        }
+      end
+
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
