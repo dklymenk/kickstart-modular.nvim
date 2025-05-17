@@ -1,4 +1,4 @@
--- You can add your own plugins here or in other files in this directory!
+--  You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
@@ -109,5 +109,11 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
     },
+    init = function()
+      vim.cmd [[cab cc CodeCompanion]]
+      vim.keymap.set({ 'n', 'v' }, '<leader>aa', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
+      vim.keymap.set({ 'n', 'v' }, '<LocalLeader>at', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
+      vim.keymap.set('v', 'ga', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true })
+    end,
   },
 }
