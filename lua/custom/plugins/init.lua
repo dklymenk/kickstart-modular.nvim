@@ -108,8 +108,10 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
+      'j-hui/fidget.nvim',
     },
     init = function()
+      require('custom.plugins.codecompanion.fidget-spinner'):init()
       vim.cmd [[cab cc CodeCompanion]]
       vim.keymap.set({ 'n', 'v' }, '<leader>aa', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
       vim.keymap.set({ 'n', 'v' }, '<LocalLeader>at', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
