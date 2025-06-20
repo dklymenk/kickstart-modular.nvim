@@ -5,13 +5,22 @@
 return {
   {
     'numToStr/Comment.nvim',
-    opts = {
-      toggler = {
-        line = '<leader>/',
-      },
-      opleader = {
-        line = '<leader>/',
-      },
+    config = function()
+      require('Comment').setup {
+        pre_hook = function()
+          return vim.bo.commentstring
+        end,
+        toggler = {
+          line = '<leader>/',
+        },
+        opleader = {
+          line = '<leader>/',
+        },
+      }
+    end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'JoosepAlviste/nvim-ts-context-commentstring',
     },
   },
   {
