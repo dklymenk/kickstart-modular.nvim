@@ -191,7 +191,7 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -231,6 +231,12 @@ return {
         }
       end
 
+      for server_name, server_config in pairs(servers) do
+        server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
+        vim.lsp.config(server_name, server_config)
+        vim.lsp.enable(server_name)
+      end
+
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -253,19 +259,6 @@ return {
         'tailwindcss-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
     end,
   },
 }
