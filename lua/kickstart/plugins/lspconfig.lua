@@ -218,19 +218,12 @@ return {
       end
       if is_skp_component_libs() then
         servers.tailwindcss = {
-          root_dir = function(fname)
-            local util = require 'lspconfig.util'
-            local root_file = {
-              '.git',
-            }
-            return util.root_pattern(unpack(root_file))(fname)
-          end,
           settings = {
             tailwindCSS = {
               classAttributes = { 'class', 'className', 'classNames' },
               validate = true,
               experimental = {
-                configFile = 'packages/utils/tailwind/tailwind.config.ts',
+                configFile = 'packages/utils/tailwind/main.css',
               },
             },
           },
