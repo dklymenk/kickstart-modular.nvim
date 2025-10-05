@@ -211,6 +211,8 @@ return {
         graphql = {
           filetypes = { 'graphql', 'typescriptreact', 'javascriptreact', 'javascript', 'typescript' },
         },
+        tailwindcss = {},
+        eslint = {},
       }
 
       local is_skp_component_libs = function()
