@@ -140,4 +140,13 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      parsers = {
+        oklch = { enable = true },
+      }
+    },
+  },
 }
