@@ -225,10 +225,6 @@ return {
           settings = {
             tailwindCSS = {
               classAttributes = { 'class', 'className', 'classNames' },
-              validate = true,
-              experimental = {
-                configFile = 'packages/utils/tailwind/main.css',
-              },
             },
           },
         }
